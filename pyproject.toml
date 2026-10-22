@@ -1,0 +1,34 @@
+# Python is only used for the test harness: the project itself is a Neovim Lua config.
+[project]
+name = "nvim-settings"
+version = "2026.10.0"
+description = "Headless pytest harness for the nvim_settings Neovim configuration"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = ["pytest>=9.1", "ruff>=0.17"]
+# Real language servers for tests/test_lsp.py (otherwise those tests are skipped).
+lsp = ["basedpyright>=1.40", "ruff>=0.17"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers"]
+markers = [
+    "network: clones plugins from GitHub (skipped unless --run-network)",
+    "lsp: needs basedpyright-langserver and ruff (skipped when missing)",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "PT", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["conftest"]
