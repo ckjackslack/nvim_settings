@@ -1,0 +1,13 @@
+# Python test harness
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Neovim binary fetched by scripts/fetch-nvim.sh
+.cache/
+
+# Editor / OS junk
+*.swp
+.DS_Store
